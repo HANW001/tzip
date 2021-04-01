@@ -56,8 +56,9 @@ def draw_bodypose(canvas, candidate, subset):
                 continue
             x, y = candidate[index][0:2]
             cv2.circle(canvas, (int(x), int(y)), 4, colors[i], thickness=-1)
-        print(body_index[i],':','X좌표:{}'.format(x),',','Y좌표:{}'.format(y))    
-            
+#         print(body_index[i],':','X좌표:{}'.format(x),',','Y좌표:{}'.format(y))    
+          #여기 프린트문을 두번째 for문으로 넣어주면 여러사람의 좌표가 나온다
+            print(body_index[i],':','X좌표:{}'.format(x),',','Y좌표:{}'.format(y))
     for i in range(17):
         for n in range(len(subset)):
             index = subset[n][np.array(limbSeq[i]) - 1]
