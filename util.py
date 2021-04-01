@@ -7,6 +7,7 @@ from matplotlib.figure import Figure
 import numpy as np
 import matplotlib.pyplot as plt
 import cv2
+#총 18개 인덱스 
 
 body_index=("Nose","Neck","RShoulder","RElbow","RWrist","LShoulder","LElbow","LWrist","RHip","RKnee", "RAnkle","LHip","LKnee","LAnkle","REye","LEye","REar", "LEar")
 def padRightDownCorner(img, stride, padValue):
