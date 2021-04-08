@@ -1,3 +1,5 @@
+## add cord of demo_camera file( line 791~805)
+
 import cv2
 from data import COCODetection, get_label_map, MEANS, COLORS
 from yolact import Yolact
