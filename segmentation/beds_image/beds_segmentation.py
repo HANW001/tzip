@@ -1,3 +1,4 @@
+#revise the line 1157~
 import cv2
 from data import COCODetection, get_label_map, MEANS, COLORS
 from yolact import Yolact
