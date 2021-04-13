@@ -176,7 +176,6 @@ class _VideoPlayerScreenState extends State<Video> {
                     icon: Icon(Icons.save),
                     color: Colors.white,
                     onPressed: () {
-                      flutterToast();
                       Navigator.of(context).pop();
                       Fluttertoast.showToast(
                           msg: '저장되었습니다.',
@@ -196,14 +195,4 @@ class _VideoPlayerScreenState extends State<Video> {
       ),
     );
   }
-}
-
-void flutterToast() {
-  Fluttertoast.showToast(
-      msg: 'Flutter',
-      gravity: ToastGravity.BOTTOM,
-      backgroundColor: Colors.redAccent,
-      fontSize: 20.0,
-      textColor: Colors.white,
-      toastLength: Toast.LENGTH_SHORT);
 }
