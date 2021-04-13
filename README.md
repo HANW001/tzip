@@ -6,6 +6,15 @@
 ```   
 --------------------------------------------------
 ```
+├─ flutter - flutter앱 만들기    
+   ├─ flutter_all - flutter 은선 수정
+   ├─ flutter_GCM - flutter 한울 수정
+   └─ lib         - flutter 소연 수정
+```
+
+
+--------------------------------------------------
+```
 ├─ pytorch-pose - 이번 프로젝트 선택 pose-estimation    
    │  cord - 수정한 코드 저장
    └─ test
@@ -17,8 +26,7 @@
 
 ```
 ├─ yolact - 이번 프로젝트 선택 object-detection       
-   │  cord - 수정한 코드 저장
-   └─ test
-       ├─  image - 테스트 이미지
-       └─  video - 테스트 비디오 (여기에 넣어서 저장하기)   
+   ├─ detection_area setting 
+   ├─ segmentation
+   └─ webcam code
 ```
