@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_application_6/pose.dart';
-import 'package:flutter_application_6/video.dart';
 import 'package:flutter_application_6/home_page.dart';
-import 'package:flutter_application_6/yolo.dart';
+import 'package:flutter_application_6/choice.dart';
+// import 'package:gcm_app/yolo.dart';
 
-class Choice2 extends StatefulWidget {
-  Choice2({Key key}) : super(key: key);
-
+class Home extends StatefulWidget {
+  Home({Key key}) : super(key: key);
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomeState createState() => _HomeState();
 }
 
-class _HomePageState extends State<Choice2> {
+class _HomeState extends State<Home> {
   Size _size;
   @override
   Widget build(BuildContext context) {
     _size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.deepPurpleAccent[50],
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.lightGreen[300],
-      ),
+          iconTheme: IconThemeData(color: Colors.white),
+          centerTitle: false,
+          elevation: 0,
+          backgroundColor: Colors.lightGreen[300]),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,11 +51,17 @@ class _HomePageState extends State<Choice2> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          margin: EdgeInsets.symmetric(vertical: 55),
+                          margin: EdgeInsets.symmetric(vertical: 60),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
+                            children: <Widget>[
+                              // IconButton(icon:Icon(Icons.subject_rounded),
+                              //  color : Colors.white,
+                              //   iconSize: 30,
+                              //   splashColor: Colors.purple,
+                              //   onPressed: (){},
+                              // ),
                               SizedBox(
                                 width: 20,
                               )
@@ -67,83 +69,86 @@ class _HomePageState extends State<Choice2> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.symmetric(horizontal: 35),
+                          margin: EdgeInsets.symmetric(horizontal: 38),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                '관리자 페이지',
+                                'YWoo',
                                 style: TextStyle(
                                     fontSize: 30,
                                     fontWeight: FontWeight.w900,
                                     letterSpacing: 1,
                                     color: Colors.white),
                               ),
-                              SizedBox(height: 8),
+                              SizedBox(
+                                height: 2,
+                              ),
                               Text(
-                                '침대 영역 지정은 YOLO',
+                                'Convalescent Home',
                                 style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w900,
                                     letterSpacing: 1,
                                     color: Colors.white),
                               ),
-                              SizedBox(height: 3),
+                              SizedBox(
+                                height: 10,
+                              ),
                               Text(
-                                '위험 방지 알람은 Pose',
+                                '낙상 및 욕창 방지 알람 시스템',
                                 style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 19,
                                     letterSpacing: 1,
                                     color: Colors.white),
-                              )
+                              ),
                             ],
                           ),
                         ),
                       ],
                     ),
                   ),
+                  Positioned(
+                    bottom: 20,
+                    child: Container(
+                      width: _size.width * 0.85,
+                      alignment: Alignment.center,
+                      // margin: EdgeInsets.symmetric(vertical: _size.height * 0.35),
+                    ),
+                  ),
                 ],
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 35),
+              margin: EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    '이용하실 서비스를 선택해 주세요',
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.lightGreen[300],
-                        fontWeight: FontWeight.w700),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
+                      Column(
                         children: [
                           InkWell(
                             onTap: () {
-                              Navigator.push(context, new MaterialPageRoute(
+                              Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) {
-                                  return Video();
+                                  return Choice2();
                                 },
                               ));
                             },
                             child: _buildShortcuts(
-                                height: _size.height * 0.24,
-                                image: 'images/bed.png',
-                                title: '침대 범위 설정',
-                                description: ''),
+                                height: _size.height * 0.25,
+                                image: 'assets/images/man.png',
+                                title: '관리자',
+                                description: '침대 범위 및 알람'),
                           ),
+                        ],
+                      ),
+                      Column(
+                        children: [
                           InkWell(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
@@ -153,10 +158,10 @@ class _HomePageState extends State<Choice2> {
                               ));
                             },
                             child: _buildShortcuts(
-                                height: _size.height * 0.24,
-                                image: 'images/doctor.png',
-                                title: '알람 시스템',
-                                description: ''),
+                                height: _size.height * 0.25,
+                                image: 'assets/images/doctor.png',
+                                title: '요양보호사',
+                                description: '알람 시스템'),
                           ),
                         ],
                       )
@@ -164,7 +169,7 @@ class _HomePageState extends State<Choice2> {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -218,7 +223,7 @@ class _HomePageState extends State<Choice2> {
                     description,
                     style: TextStyle(
                         fontSize: 15,
-                        color: Colors.deepPurple,
+                        color: Colors.lightGreen[300],
                         fontWeight: FontWeight.normal),
                   ),
                 ),

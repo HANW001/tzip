@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_application_6/choice.dart';
+// import 'package:flutter_application_6/choice.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
   runApp(Video());
@@ -48,13 +49,10 @@ class _VideoPlayerScreenState extends State<Video> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.greenAccent[400],
-        title: Text(
-          'yolo',
-          style: TextStyle(fontSize: 20),
-        ),
+        backgroundColor: Colors.lightGreen[300],
       ),
       body: FutureBuilder(
         future: _initializeVideoPlayerFuture,
@@ -94,85 +92,118 @@ class _VideoPlayerScreenState extends State<Video> {
       bottomSheet: Row(
         children: <Widget>[
           SizedBox(
+            width: 70,
+          ),
+          Container(
             width: 80,
-          ),
-          Container(
-            width: 100,
-            height: 100,
-            child: Ink(
-              decoration: const ShapeDecoration(
-                color: Colors.green,
-                shape: CircleBorder(),
-              ),
-              child: IconButton(
-                icon: Icon(Icons.autorenew),
-                color: Colors.white,
-                onPressed: () {
-                  setState(() {
-                    if (_controller.value.isPlaying) {
-                      _controller.pause();
-                    } else {
-                      // 만약 영상이 일시 중지 상태였다면, 재생합니다.
-                      _controller.play();
-                    }
-                  });
-                },
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 30,
-          ),
-          Container(
-            width: 100,
-            height: 100,
-            child: Ink(
-              decoration: const ShapeDecoration(
-                color: Colors.green,
-                shape: CircleBorder(),
-              ),
-              child: IconButton(
-                icon: Icon(Icons.play_arrow),
-                color: Colors.white,
-                onPressed: () {
-                  setState(() {
-                    if (_controller.value.isPlaying) {
-                      _controller.pause();
-                    } else {
-                      // 만약 영상이 일시 중지 상태였다면, 재생합니다.
-                      _controller.play();
-                    }
-                  });
-                },
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 30,
-          ),
-          Container(
-            width: 100,
-            height: 100,
-            child: Ink(
-              decoration: const ShapeDecoration(
-                color: Colors.green,
-                shape: CircleBorder(),
-              ),
-              child: IconButton(
-                icon: Icon(Icons.save),
-                color: Colors.white,
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) {
-                      return Choice2();
+            height: 80,
+            child: Column(
+              children: [
+                Ink(
+                  decoration: const ShapeDecoration(
+                    color: Colors.lightGreen,
+                    shape: CircleBorder(),
+                  ),
+                  child: IconButton(
+                    icon: Icon(Icons.autorenew),
+                    color: Colors.white,
+                    onPressed: () {
+                      setState(() {
+                        if (_controller.value.isPlaying) {
+                          _controller.pause();
+                        } else {
+                          // 만약 영상이 일시 중지 상태였다면, 재생합니다.
+                          _controller.play();
+                        }
+                      });
                     },
-                  ));
-                },
-              ),
+                  ),
+                ),
+                Container(
+                  child: Text('text'),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          Container(
+            width: 80,
+            height: 80,
+            child: Column(
+              children: [
+                Ink(
+                  decoration: const ShapeDecoration(
+                    color: Colors.lightGreen,
+                    shape: CircleBorder(),
+                  ),
+                  child: IconButton(
+                    icon: Icon(Icons.play_arrow),
+                    color: Colors.white,
+                    onPressed: () {
+                      setState(() {
+                        if (_controller.value.isPlaying) {
+                          _controller.pause();
+                        } else {
+                          // 만약 영상이 일시 중지 상태였다면, 재생합니다.
+                          _controller.play();
+                        }
+                      });
+                    },
+                  ),
+                ),
+                Container(
+                  child: Text('text'),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          Container(
+            width: 80,
+            height: 80,
+            child: Column(
+              children: [
+                Ink(
+                  decoration: const ShapeDecoration(
+                    color: Colors.lightGreen,
+                    shape: CircleBorder(),
+                  ),
+                  child: IconButton(
+                    icon: Icon(Icons.save),
+                    color: Colors.white,
+                    onPressed: () {
+                      flutterToast();
+                      Navigator.of(context).pop();
+                      Fluttertoast.showToast(
+                          msg: '저장되었습니다.',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1);
+                    },
+                  ),
+                ),
+                Container(
+                  child: Text('text'),
+                )
+              ],
             ),
           ),
         ],
       ),
     );
   }
+}
+
+void flutterToast() {
+  Fluttertoast.showToast(
+      msg: 'Flutter',
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Colors.redAccent,
+      fontSize: 20.0,
+      textColor: Colors.white,
+      toastLength: Toast.LENGTH_SHORT);
 }

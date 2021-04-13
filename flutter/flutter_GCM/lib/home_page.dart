@@ -1,11 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_application_6/pose.dart';
-import 'package:flutter_application_6/choice.dart';
+import 'package:flutter_application_6/home_screen.dart';
+// import 'package:gcm_app/constants.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
-
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -16,39 +17,47 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     _size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.deepPurpleAccent[50],
+      appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.white),
+          centerTitle: false,
+          elevation: 0,
+          backgroundColor: Colors.lightGreen[300]),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              height: _size.height * 0.45,
+              height: _size.height * 0.38,
               child: Stack(
                 alignment: Alignment.topCenter,
                 children: [
                   Container(
-                    height: _size.height * 0.4,
-                    width: _size.width,
+                    height: _size.height * 0.3,
                     decoration: BoxDecoration(
-                        color: Colors.greenAccent[700],
                         borderRadius:
-                            BorderRadius.only(bottomLeft: Radius.circular(60))),
+                            BorderRadius.only(bottomLeft: Radius.circular(60)),
+                        gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.lightGreen[300],
+                              Color(0xFF7FB45E),
+                            ],
+                            stops: [
+                              0.1,
+                              0.9
+                            ])),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          margin: EdgeInsets.symmetric(vertical: 50),
+                          margin: EdgeInsets.symmetric(vertical: 9),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Icon(
-                                Icons.subject_rounded,
-                                color: Colors.white,
-                                size: 30,
-                              ),
                               SizedBox(
                                 width: 20,
                               )
@@ -56,13 +65,21 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.symmetric(horizontal: 25),
+                          margin: EdgeInsets.symmetric(horizontal: 38),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                '영우 요양원',
+                                '홍길동 님,',
+                                style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w900,
+                                    letterSpacing: 1,
+                                    color: Colors.white),
+                              ),
+                              Text(
+                                '담당 호실 설정',
                                 style: TextStyle(
                                     fontSize: 30,
                                     fontWeight: FontWeight.w900,
@@ -70,25 +87,25 @@ class _HomePageState extends State<HomePage> {
                                     color: Colors.white),
                               ),
                               SizedBox(
-                                height: 25,
+                                height: 7,
                               ),
                               Text(
-                                '잘섬기계 입니다.',
+                                'Select your own room',
                                 style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 19,
                                     letterSpacing: 1,
                                     color: Colors.white),
                               ),
                               SizedBox(
-                                height: 10,
+                                height: 4,
                               ),
                               Text(
-                                '감사합니다',
+                                'Only alarms the selected room',
                                 style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 13,
                                     letterSpacing: 1,
                                     color: Colors.white),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -100,7 +117,8 @@ class _HomePageState extends State<HomePage> {
                     child: Container(
                       width: _size.width * 0.85,
                       alignment: Alignment.center,
-                      // margin: EdgeInsets.symmetric(vertical: _size.height * 0.35),
+                      margin: EdgeInsets.symmetric(horizontal: 30),
+                      // margin: EdgeInsets.symmetric(vertical: _size.height * 0.04),
                       child: TextFormField(
                         decoration: InputDecoration(
                             filled: true,
@@ -109,9 +127,9 @@ class _HomePageState extends State<HomePage> {
                             prefixIcon: Icon(
                               Icons.search,
                               size: 30,
-                              color: Colors.deepPurple[900],
+                              color: Colors.lightGreen[300],
                             ),
-                            hintText: 'Search our simptoms...',
+                            hintText: 'Search the room...',
                             hintStyle: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 17,
@@ -129,120 +147,111 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    '사용자를 선택해주세요.',
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.deepPurple,
-                        fontWeight: FontWeight.w700),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Row(
                         children: [
                           InkWell(
                             onTap: () {
-                              Navigator.pushNamed(context, '/c');
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) {
+                                  return HomeScreen();
+                                },
+                              ));
                             },
                             child: _buildShortcuts(
-                                height: _size.height * 0.24,
-                                image: 'images/thermometer.png',
-                                title: '관리자',
-                                description: ''),
+                                title: "101호실", description: "Room 101"),
                           ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/p');
-                            },
-                            child: _buildShortcuts(
-                                height: _size.height * 0.24,
-                                image: 'images/doctor.png',
-                                title: '요양보호사',
-                                description: ''),
-                          ),
+                          _buildShortcuts(
+                              title: "102호실", description: "Room 102"),
                         ],
-                      )
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Row(
+                        children: [
+                          _buildShortcuts(
+                              title: "201호실", description: "Room 201"),
+                          _buildShortcuts(
+                              title: "202호실", description: "Room 202"),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Row(
+                        children: [
+                          _buildShortcuts(
+                              title: "301호실", description: "Room 301"),
+                          _buildShortcuts(
+                              title: "302호실", description: "Room 302"),
+                        ],
+                      ),
                     ],
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildShortcuts({
-    double height,
-    String image,
-    String title,
-    String description,
-  }) {
+  Widget _buildShortcuts({double height, String title, String description}) {
     return Container(
-        height: height,
-        width: _size.width * 0.4,
-        child: Card(
-          elevation: 5,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                alignment: Alignment.topLeft,
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                    image: DecorationImage(image: AssetImage(image))),
+      height: 150,
+      width: _size.width * 0.42,
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+              // alignment : Alignment.topLeft,
+              // height : 50,
+              // width : 50,
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Container(
+              alignment: Alignment.center,
+              // margin : EdgeInsets.symmetric(horizontal : 15),
+              child: Text(
+                title,
+                style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.lightGreen[300],
+                    letterSpacing: 0.5,
+                    fontWeight: FontWeight.w900),
               ),
-              Spacer(),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 15),
-                child: Text(
-                  title,
-                  style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.deepPurple,
-                      letterSpacing: 0.5,
-                      fontWeight: FontWeight.w800),
-                ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              // margin : EdgeInsets.symmetric(horizontal : 15),
+              child: Text(
+                description,
+                style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.lightGreen[300],
+                    fontWeight: FontWeight.normal),
               ),
-              SizedBox(
-                height: 5,
-              ),
-              if (description != '')
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 15),
-                  child: Text(
-                    description,
-                    style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.deepPurple,
-                        fontWeight: FontWeight.normal),
-                  ),
-                ),
-              SizedBox(
-                height: 15,
-              ),
-            ],
-          ),
-        ));
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
