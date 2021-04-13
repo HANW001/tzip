@@ -7,23 +7,23 @@ void main() {
   runApp(Video());
 }
 
-class Video extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'My App',
-      home: VideoPlayerScreen(),
-    );
-  }
-}
+// class Video extends StatelessWidget {
+//   // This widget is the root of your application.
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'My App',
+//       home: VideoPlayerScreen(),
+//     );
+//   }
+// }
 
-class VideoPlayerScreen extends StatefulWidget {
+class Video extends StatefulWidget {
   @override
   _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
 }
 
-class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
+class _VideoPlayerScreenState extends State<Video> {
   VideoPlayerController _controller;
   Future<void> _initializeVideoPlayerFuture;
 
@@ -60,9 +60,29 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         future: _initializeVideoPlayerFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
-              child: VideoPlayer(_controller),
+            return Column(
+              children: [
+                AspectRatio(
+                  aspectRatio: _controller.value.aspectRatio,
+                  child: VideoPlayer(_controller),
+                ),
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      child: Text("long text"),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      child: Text("long text"),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      child: Text("long text"),
+                    ),
+                  ],
+                ),
+              ],
             );
           } else {
             return Center(
@@ -71,58 +91,85 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
           }
         },
       ),
-      floatingActionButton: Center(
-        child: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              if (_controller.value.isPlaying) {
-                _controller.pause();
-              } else {
-                // 만약 영상이 일시 중지 상태였다면, 재생합니다.
-                _controller.play();
-              }
-            });
-          },
-          child: Icon(
-              _controller.value.isPlaying ? Icons.pause : Icons.play_arrow),
-        ),
-      ),
       bottomSheet: Row(
         children: <Widget>[
+          SizedBox(
+            width: 80,
+          ),
           Container(
-            width: 200,
-            height: 200,
-            child: RaisedButton(
-                child: Text(
-                  '수정',
-                  style: TextStyle(fontSize: 30),
-                ),
+            width: 100,
+            height: 100,
+            child: Ink(
+              decoration: const ShapeDecoration(
+                color: Colors.green,
+                shape: CircleBorder(),
+              ),
+              child: IconButton(
+                icon: Icon(Icons.autorenew),
+                color: Colors.white,
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Video()));
+                  setState(() {
+                    if (_controller.value.isPlaying) {
+                      _controller.pause();
+                    } else {
+                      // 만약 영상이 일시 중지 상태였다면, 재생합니다.
+                      _controller.play();
+                    }
+                  });
                 },
-                color: Colors.red,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30))),
+              ),
+            ),
           ),
           SizedBox(
             width: 30,
           ),
           Container(
-            width: 200,
-            height: 200,
-            child: RaisedButton(
-                child: Text(
-                  '성공',
-                  style: TextStyle(fontSize: 30),
-                ),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Choice2()));
-                },
+            width: 100,
+            height: 100,
+            child: Ink(
+              decoration: const ShapeDecoration(
                 color: Colors.green,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30))),
+                shape: CircleBorder(),
+              ),
+              child: IconButton(
+                icon: Icon(Icons.play_arrow),
+                color: Colors.white,
+                onPressed: () {
+                  setState(() {
+                    if (_controller.value.isPlaying) {
+                      _controller.pause();
+                    } else {
+                      // 만약 영상이 일시 중지 상태였다면, 재생합니다.
+                      _controller.play();
+                    }
+                  });
+                },
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 30,
+          ),
+          Container(
+            width: 100,
+            height: 100,
+            child: Ink(
+              decoration: const ShapeDecoration(
+                color: Colors.green,
+                shape: CircleBorder(),
+              ),
+              child: IconButton(
+                icon: Icon(Icons.save),
+                color: Colors.white,
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return Choice2();
+                    },
+                  ));
+                },
+              ),
+            ),
           ),
         ],
       ),

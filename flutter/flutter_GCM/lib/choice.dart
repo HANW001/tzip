@@ -18,6 +18,15 @@ class _HomePageState extends State<Choice2> {
     _size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.deepPurpleAccent[50],
+      appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.amber,
+        title: Text(
+          'choice',
+          style: TextStyle(fontSize: 20),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,7 +166,7 @@ class _HomePageState extends State<Choice2> {
                         children: [
                           InkWell(
                             onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
+                              Navigator.push(context, new MaterialPageRoute(
                                 builder: (context) {
                                   return Video();
                                 },
