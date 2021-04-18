@@ -29,5 +29,6 @@
 ├─ yolact - 이번 프로젝트 선택 object-detection       
    ├─ detection_area setting 
    ├─ segmentation
+   ├─ yolact_fixed yolact 필수파일만 정리, model폴더는 용량커서 따로 다운로드 필요. 택수 수정
    └─ webcam code
 ```
