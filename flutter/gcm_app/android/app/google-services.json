@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "557704128756",
+    "project_id": "seraphic-rune-301101",
+    "storage_bucket": "seraphic-rune-301101.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:557704128756:android:c3deb6af5b29f9677756a1",
+        "android_client_info": {
+          "package_name": "gcm_app.gcm_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "557704128756-trdggu27ksv1o8lvh3sj7aokajt3kili.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_sLWaNY0l1ovhRKpqbLZUlFMFXKeNO_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "557704128756-trdggu27ksv1o8lvh3sj7aokajt3kili.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
