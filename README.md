@@ -8,7 +8,7 @@
 ```
 ├─ flutter - flutter앱 만들기    
    ├─ flutter_all - flutter 은선 수정
-   │  └─ lib_modify - 최종 수정본
+   ├─ gcm_app     - flutter 최종 수정본
    ├─ flutter_GCM - flutter 한울 수정
    └─ lib         - flutter 소연 수정
 ```
